@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
+#include <bits/extc++.h>
 
+using namespace __gnu_pbds;
 using namespace std;
 
 #define itr(...) begin(__VA_ARGS__), end(__VA_ARGS__)
@@ -23,6 +25,47 @@ const ll infl = 0x3f3f3f3f3f3f3f3fll;
 
 int main() {
   fastIO();
-
+  int t;
+  cin >> t;
+  while(t--){
+    int n;
+    cin >> n;
+    vector<ll> w(n + 1, 0);
+    for(int i = 1; i <= n; ++i) cin >> w[i];
+    tree<PLL, null_type, less<PLL>,rb_tree_tag,tree_order_statistics_node_update> tr;
+    vector<vector<int>> g(n + 1);
+    for(int i = 1; i < n; ++i){
+      int a, b;
+      cin >> a >> b;
+      g[a].push_back(b);
+      g[b].push_back(a);
+    }
+    vector<int> ans(n + 1, -1);
+    auto&& dfs = [&](auto&& self, int cur, int pre) -> void{
+      tr.insert(PLL{w[cur], cur});
+      bool leaf = true;
+      for(auto& nex: g[cur]){
+        if(nex == pre) continue;
+        self(self, nex, cur);
+        leaf = false;
+      }
+      if(leaf){
+        auto ps = tr.lower_bound({w[cur] + 1, 0});
+        if(ps == tr.end()){
+          ans[cur] = 0;
+        }else{
+          ans[cur] = tr.size() - tr.order_of_key(*ps);
+        }
+      }
+      tr.erase(PLL{w[cur], cur});
+    };
+    dfs(dfs, 1, 0);
+    for(auto& it: ans){
+      if(it >= 0){
+        cout << it << " ";
+      }
+    }
+    cout << "\n";
+  }
   return 0;
 }
