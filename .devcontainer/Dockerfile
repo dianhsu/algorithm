@@ -6,7 +6,7 @@ FROM silkeh/clang
 # 更新包数据库
 RUN apt-get update
 # 安装必要的软件包
-RUN apt-get install -y gdb build-essential curl sed unzip
+RUN apt-get install -y gdb build-essential curl sed unzip git
 # 安装cf-tool
 RUN mkdir ~/tool && mkdir ~/tool/bin
 RUN curl -L $(curl -s https://api.github.com/repos/dianhsu/cf-tool/releases/latest | grep /cf_linux_x64.zip | cut -d '"' -f 4) -o dist.zip && unzip dist.zip && rm dist.zip && mv cf ~/tool/bin/cf && chmod +x ~/tool/bin/cf
