@@ -40,15 +40,25 @@ int main() {
   int t;
   cin >> t;
   while(t--){
-    ll n, k, g;
-    cin >> n >> k >> g;
-    ll maxv = ((g + 1) / 2 - 1) * n;
-    ll sum = k * g;
-    ll delta = max(0ll, sum - maxv);
-    if(delta % g > 0){
-      delta = delta + g - delta % g;
+    int n;
+    cin >> n;
+    vector<int> arr(n + 1, 0);
+    for(int i = 1; i <= n; ++i) cin >> arr[i];
+    vector<int> dp(n + 1, inf);
+    dp[0] = 0;
+    map<int, int> mp;
+    for(int i = 1; i <= n; ++i){
+      dp[i] = dp[i - 1] + 1;
+      if(mp.count(arr[i])){
+        dp[i] = min(dp[i], dp[mp[arr[i]] - 1]);
+        if(dp[i - 1] < dp[mp[arr[i]] - 1]){
+          mp[arr[i]] = i;
+        }
+      }else{
+        mp[arr[i]] = i;
+      }
     }
-    cout << sum - delta << "\n";
+    cout << n - dp[n] << "\n";
   }
   return 0;
 }

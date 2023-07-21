@@ -40,15 +40,28 @@ int main() {
   int t;
   cin >> t;
   while(t--){
-    ll n, k, g;
-    cin >> n >> k >> g;
-    ll maxv = ((g + 1) / 2 - 1) * n;
-    ll sum = k * g;
-    ll delta = max(0ll, sum - maxv);
-    if(delta % g > 0){
-      delta = delta + g - delta % g;
+    string x, y;
+    cin >> x >> y;
+    reverse(itr(x));
+    reverse(itr(y));
+    while(x.length() != y.length()){
+      if(x.length() < y.length()) x += '0';
+      else if(y.length() < x.length()) y += '0';
     }
-    cout << sum - delta << "\n";
+    int n = x.length();
+    bool ok = false;
+    int ans = 0;
+    for(int i = n - 1; i >= 0; --i){
+      if(ok){
+        ans += 9;
+        continue;
+      }
+      if(x[i] < y[i]){
+        ans += y[i] - x[i];
+        ok = true;
+      }
+    }
+    cout << ans << "\n";
   }
   return 0;
 }

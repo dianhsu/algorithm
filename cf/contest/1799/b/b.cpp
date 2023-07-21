@@ -35,31 +35,48 @@ int __INIT_IO__ = []() {
   cout << fixed << setprecision(12);
   return 0;
 }();
+
 int main() {
-  vector<ll> flag{1, 10, 100, 1000, 10000, 100000, 1000000, 10000000};
   int t;
   cin >> t;
   while (t--) {
-    ll a, b, c, k;
-    cin >> a >> b >> c >> k;
-    ll minc = flag[c - 1], maxc = flag[c] - 1;
-    bool ok = false;
-    for(ll cura = flag[a - 1]; cura < flag[a]; ++cura){
-      ll minb = max(flag[b - 1], minc - cura);
-      ll maxb = min(flag[b] - 1, maxc - cura);
-      if(minb <= maxb){
-        ll dis = maxb - minb + 1;
-        if(dis < k){
-          k -= dis;
-        }else{
-          cout << cura << " + " << minb + k - 1 << " = " << cura + minb + k - 1 << "\n";
-          ok = true;
-          break;
-        }
+    int n;
+    cin >> n;
+    set<PII> st;
+    vector<int> arr(n);
+    bool containsOne = false;
+    bool containsOther = false;
+    for (auto &x : arr) {
+      cin >> x;
+      if (x == 1) {
+        containsOne = true;
+      } else {
+        containsOther = true;
       }
     }
-    if(!ok){
+    if (containsOne and containsOther) {
       cout << -1 << "\n";
+    } else if (containsOne) {
+      cout << 0 << "\n";
+    } else if (n == 1) {
+      cout << 0 << "\n";
+    } else {
+      for (int i = 0; i < n; ++i) {
+        st.insert({arr[i], i});
+      }
+      vector<PII> ops;
+      while (st.begin()->first < st.rbegin()->first) {
+        auto maxv = *st.rbegin();
+        st.erase(maxv);
+        ops.push_back({maxv.second + 1, st.begin()->second + 1});
+        maxv.first = (maxv.first + st.begin()->first - 1) / st.begin()->first;
+        st.insert(maxv);
+      }
+      //debug(st.begin()->first, st.rbegin()->first);
+      cout << ops.size() << "\n";
+      for(auto& it: ops){
+        cout << it.first << " " << it.second << "\n";
+      }
     }
   }
   return 0;

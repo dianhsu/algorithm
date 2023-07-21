@@ -40,16 +40,36 @@ int main() {
   int t;
   cin >> t;
   while(t--){
-    ll n, k, g;
-    cin >> n >> k >> g;
-    ll maxv = ((g + 1) / 2 - 1) * n;
-    ll sum = k * g;
-    ll delta = max(0ll, sum - maxv);
-    if(delta % g > 0){
-      delta = delta + g - delta % g;
+    int n;
+    cin >> n;
+    string a, b;
+    cin >> a >> b;
+    int odd = 0, even = 0;
+    for(int i = 0; i < n; ++i){
+      if(a[i] != b[i]){
+        even++;
+      }
+      if(a[i] != b[n - 1 - i]){
+        odd++;
+      }
     }
-    cout << sum - delta << "\n";
+    if(even % 2 == 0){
+      even += even;
+    }else{
+      even += even - 1;
+    }
+    if(odd % 2 == 0){
+      if(odd == 0){
+        odd = 2;
+      }else{
+        odd += odd - 1;
+      }
+    }else{
+      odd += odd;
+    }
+    cout << min(even, odd) << "\n";
   }
+
   return 0;
 }
 

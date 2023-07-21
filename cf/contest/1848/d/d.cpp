@@ -35,40 +35,15 @@ int __INIT_IO__ = [](){
   cout << fixed << setprecision(12);
   return 0;
 }();
-ll getCur(ll cur, ll tk){
-  cur += tk / 4 * 10;
-  tk %= 4;
-  while(tk > 0){
-    cur += cur % 10;
-    --tk;
-  }
-  return cur;
-}
-ll getTv(ll cur, ll k, ll tk){
-  ll res = getCur(cur, tk) * (k - tk);
-  debug(cur, k, tk, res, getCur(cur, tk), k - tk);
+
+ll f(ll s, ll k){
+  ll x = (5 * k - s) / 40;
+  x = min(x, k / 4);
+  ll res = s * k;
+  if(x > 0) res = max(res, (s + 20 * x) * (k - 4 * x));
+  x = min(x + 1, k / 4);
+  if(x > 0) res = max(res, (s + 20 * x) * (k - 4 * x));
   return res;
-}
-ll solve2468(ll cur, ll k){
-  ll lv = cur * k, lp = 0;
-  ll hv = 0, hp = k;
-  ll ans = max(lv, hv);
-  while(lp < hp){
-    auto mp = (lp + hp) / 2;
-    auto mmp = (mp + lp) / 2;
-    auto mpv = getTv(cur, k, mp);
-    auto mmpv = getTv(cur, k, mmp);
-    ans = max({ans, mmpv, mpv});
-    if(mpv <= mmpv){
-      hp = mp - 1;
-      ans = max(ans, getTv(cur, k, hp));
-    }else{
-      lp = mmp + 1;
-      ans = max(ans, getTv(cur, k, lp));
-    }
-  }
-  debug(cur, k, ans);
-  return ans;
 }
 int main() {
   int t;
@@ -76,15 +51,23 @@ int main() {
   while(t--){
     ll s, k;
     cin >> s >> k;
-    if(s % 10 == 0){
-      cout << s * k << "\n";
-    }else if(s % 10 == 5){
-      cout << max(s * k, (s + 5) * (k - 1)) << "\n";
-    }else if(s % 10 == 1 || s % 10 == 3 || s % 10 == 9 || s % 10 == 7){
-      cout << max(s * k, solve2468(s + s % 10, k - 1)) << "\n";
-    }else{
-      cout << max(s * k, solve2468(s, k)) << "\n";
+    ll ans = s * k;
+    if(s % 10 == 5){
+      ans = max(ans, (s + 5) * (k - 1));
+    }else if(s % 10){
+      if(s % 2 == 1){
+        s += s % 10;
+        --k;
+      }
+      for(int i = 0; i < 4; ++i){
+        if(k > 0){
+          ans = max(ans, f(s, k));
+        }
+        s += s % 10;
+        --k;
+      }
     }
+    cout << ans << "\n";
   }
   return 0;
 }

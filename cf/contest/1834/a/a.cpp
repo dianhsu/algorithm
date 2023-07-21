@@ -12,7 +12,7 @@ using namespace std;
 
 void rd_debug() { cout << "\033[39;0m" << endl; }
 
-template <class T, class... Ts> void rd_debug(const T& arg, const Ts &...args) {
+template <class T, class... Ts> void rd_debug(const T &arg, const Ts &...args) {
   cout << arg << " ";
   rd_debug(args...);
 }
@@ -28,7 +28,7 @@ const int MOD9 = 998244353;
 const int inf = 0x3f3f3f3f;
 const ll infl = 0x3f3f3f3f3f3f3f3fll;
 
-int __INIT_IO__ = [](){
+int __INIT_IO__ = []() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
   cout.tie(nullptr);
@@ -39,17 +39,27 @@ int __INIT_IO__ = [](){
 int main() {
   int t;
   cin >> t;
-  while(t--){
-    ll n, k, g;
-    cin >> n >> k >> g;
-    ll maxv = ((g + 1) / 2 - 1) * n;
-    ll sum = k * g;
-    ll delta = max(0ll, sum - maxv);
-    if(delta % g > 0){
-      delta = delta + g - delta % g;
+  while (t--) {
+    int n;
+    cin >> n;
+    int pos = 0, neg = 0;
+    for (int i = 0; i < n; ++i) {
+      int tv;
+      cin >> tv;
+      if (tv > 0) {
+        ++pos;
+      } else {
+        ++neg;
+      }
     }
-    cout << sum - delta << "\n";
+    int ops = 0;
+    while (pos < neg or neg % 2 == 1) {
+      --neg;
+      ++pos;
+      ++ops;
+    }
+    cout << ops << "\n";
   }
+
   return 0;
 }
-

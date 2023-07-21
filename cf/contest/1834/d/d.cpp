@@ -40,15 +40,8 @@ int main() {
   int t;
   cin >> t;
   while(t--){
-    ll n, k, g;
-    cin >> n >> k >> g;
-    ll maxv = ((g + 1) / 2 - 1) * n;
-    ll sum = k * g;
-    ll delta = max(0ll, sum - maxv);
-    if(delta % g > 0){
-      delta = delta + g - delta % g;
-    }
-    cout << sum - delta << "\n";
+    int n, m;
+    cin >> n >> m;
   }
   return 0;
 }

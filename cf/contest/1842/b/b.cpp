@@ -40,16 +40,37 @@ int main() {
   int t;
   cin >> t;
   while(t--){
-    ll n, k, g;
-    cin >> n >> k >> g;
-    ll maxv = ((g + 1) / 2 - 1) * n;
-    ll sum = k * g;
-    ll delta = max(0ll, sum - maxv);
-    if(delta % g > 0){
-      delta = delta + g - delta % g;
+    int n, x;
+    cin >> n >> x;
+    vector<int> arr(n), brr(n), crr(n);
+    for(auto& it: arr) cin >> it;
+    for(auto& it: brr) cin >> it;
+    for(auto& it: crr) cin >> it;
+    int cur = 0;
+    for(auto& it: arr){
+      if((it & x) == it){
+        cur |= it;
+      }else{
+        break;
+      }
     }
-    cout << sum - delta << "\n";
+    for(auto& it: brr){
+      if((it & x) == it){
+        cur |= it;
+      }else{
+        break;
+      }
+    }
+    for(auto& it: crr){
+      if((it & x) == it){
+        cur |= it;
+      }else{
+        break;
+      }
+    }
+    cout << (cur == x ? "YES" : "NO") << endl;
   }
+
   return 0;
 }
 

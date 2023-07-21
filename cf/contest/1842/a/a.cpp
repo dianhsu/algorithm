@@ -40,16 +40,18 @@ int main() {
   int t;
   cin >> t;
   while(t--){
-    ll n, k, g;
-    cin >> n >> k >> g;
-    ll maxv = ((g + 1) / 2 - 1) * n;
-    ll sum = k * g;
-    ll delta = max(0ll, sum - maxv);
-    if(delta % g > 0){
-      delta = delta + g - delta % g;
-    }
-    cout << sum - delta << "\n";
+    int n, m;
+    cin >> n >> m;
+    vector<ll> arr(n), brr(m);
+    for(auto &x : arr) cin >> x;
+    for(auto &x : brr) cin >> x;
+    ll sa = accumulate(itr(arr), 0ll);
+    ll sb = accumulate(itr(brr), 0ll);
+    if(sa > sb) cout << "Tsondu" << "\n";
+    else if(sa == sb) cout << "Draw" << "\n";
+    else cout << "Tenzing" << "\n";
   }
+
   return 0;
 }
 
