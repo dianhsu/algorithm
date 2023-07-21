@@ -31,7 +31,8 @@
 				"GitHub.copilot",
 				"EditorConfig.EditorConfig",
 				"vadimcn.vscode-lldb",
-				"llvm-vs-code-extensions.vscode-clangd"
+				"llvm-vs-code-extensions.vscode-clangd",
+				"GitHub.copilot-chat"
 			]
 		}
 	}
