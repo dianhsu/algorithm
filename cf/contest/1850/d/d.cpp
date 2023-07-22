@@ -40,24 +40,24 @@ int main() {
   int t;
   cin >> t;
   while(t--){
-    int n, k, q;
-    cin >> n >> k >> q;
-    vector<int> temp(n);
-    for(auto& it: temp) cin >> it;
-    ll cur = 0;
-    ll ans = 0;
-    for(int i = 0; i < n; ++i){
-      if(temp[i] <= q){
-        ++cur;
+    int n, k;
+    cin >> n >> k;
+    int ans = 0;
+    vector<int> arr(n);
+    for(auto& it: arr) cin >> it;
+    sort(itr(arr));
+    int pre = arr[0];
+    int cnt = 0;
+    for(auto& v: arr){
+      if(pre + k < v){
+        cnt = 1;
       }else{
-        cur = 0;
+        ++cnt;
       }
-      if(cur >= k){
-        ll tmp = cur - k + 1;
-        ans += (tmp + 1) * tmp / 2 - tmp * (tmp - 1) / 2;
-      }
+      pre = v;
+      ans = max(ans, cnt);
     }
-    cout << ans << endl;
+    cout << n - ans << "\n";
   }
 
   return 0;

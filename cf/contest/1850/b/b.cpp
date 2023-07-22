@@ -40,24 +40,20 @@ int main() {
   int t;
   cin >> t;
   while(t--){
-    int n, k, q;
-    cin >> n >> k >> q;
-    vector<int> temp(n);
-    for(auto& it: temp) cin >> it;
-    ll cur = 0;
-    ll ans = 0;
+    int n;
+    cin >> n;
+    vector<PII> arr(n);
     for(int i = 0; i < n; ++i){
-      if(temp[i] <= q){
-        ++cur;
-      }else{
-        cur = 0;
-      }
-      if(cur >= k){
-        ll tmp = cur - k + 1;
-        ans += (tmp + 1) * tmp / 2 - tmp * (tmp - 1) / 2;
+      cin >> arr[i].first >> arr[i].second;
+    }
+    int cur = -1;
+    for(int i = 0; i < n; ++i){
+      if(arr[i].first <= 10){
+        if(cur == -1) cur = i;
+        else if(arr[i].second > arr[cur].second) cur = i;
       }
     }
-    cout << ans << endl;
+    cout << cur + 1 << "\n";
   }
 
   return 0;

@@ -40,24 +40,10 @@ int main() {
   int t;
   cin >> t;
   while(t--){
-    int n, k, q;
-    cin >> n >> k >> q;
-    vector<int> temp(n);
-    for(auto& it: temp) cin >> it;
-    ll cur = 0;
-    ll ans = 0;
-    for(int i = 0; i < n; ++i){
-      if(temp[i] <= q){
-        ++cur;
-      }else{
-        cur = 0;
-      }
-      if(cur >= k){
-        ll tmp = cur - k + 1;
-        ans += (tmp + 1) * tmp / 2 - tmp * (tmp - 1) / 2;
-      }
-    }
-    cout << ans << endl;
+    int a, b, c;
+    cin >> a >> b >> c;
+    int sum = a + b + c;
+    cout << (sum - min({a, b, c}) >= 10 ? "YES" : "NO") << endl;
   }
 
   return 0;

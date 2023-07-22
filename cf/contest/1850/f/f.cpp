@@ -40,26 +40,26 @@ int main() {
   int t;
   cin >> t;
   while(t--){
-    int n, k, q;
-    cin >> n >> k >> q;
-    vector<int> temp(n);
-    for(auto& it: temp) cin >> it;
-    ll cur = 0;
-    ll ans = 0;
+    int n;
+    cin >> n;
+    vector<int> ans(n + 1, 0);
+    map<int, int> mp;
     for(int i = 0; i < n; ++i){
-      if(temp[i] <= q){
-        ++cur;
-      }else{
-        cur = 0;
-      }
-      if(cur >= k){
-        ll tmp = cur - k + 1;
-        ans += (tmp + 1) * tmp / 2 - tmp * (tmp - 1) / 2;
+      int tv;
+      cin >> tv;
+      mp[tv]++;
+    }
+    for(auto& [k, v]: mp){
+      for(int cur = k; cur <= n; cur += k){
+        ans[cur] += v;
       }
     }
-    cout << ans << endl;
+    int res = 0;
+    for(auto& it: ans){
+      res = max(res, it);
+    }
+    cout << res << "\n";
   }
-
   return 0;
 }
 

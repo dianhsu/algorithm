@@ -12,7 +12,7 @@ using namespace std;
 
 void rd_debug() { cout << "\033[39;0m" << endl; }
 
-template <class T, class... Ts> void rd_debug(const T& arg, const Ts &...args) {
+template <class T, class... Ts> void rd_debug(const T &arg, const Ts &...args) {
   cout << arg << " ";
   rd_debug(args...);
 }
@@ -28,7 +28,7 @@ const int MOD9 = 998244353;
 const int inf = 0x3f3f3f3f;
 const ll infl = 0x3f3f3f3f3f3f3f3fll;
 
-int __INIT_IO__ = [](){
+int __INIT_IO__ = []() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
   cout.tie(nullptr);
@@ -39,27 +39,22 @@ int __INIT_IO__ = [](){
 int main() {
   int t;
   cin >> t;
-  while(t--){
-    int n, k, q;
-    cin >> n >> k >> q;
-    vector<int> temp(n);
-    for(auto& it: temp) cin >> it;
-    ll cur = 0;
-    ll ans = 0;
-    for(int i = 0; i < n; ++i){
-      if(temp[i] <= q){
-        ++cur;
-      }else{
-        cur = 0;
-      }
-      if(cur >= k){
-        ll tmp = cur - k + 1;
-        ans += (tmp + 1) * tmp / 2 - tmp * (tmp - 1) / 2;
-      }
-    }
-    cout << ans << endl;
+  while (t--) {
+    int n;
+    ll c;
+    cin >> n >> c;
+    vector<ll> arr(n);
+    for (auto &it : arr)
+      cin >> it;
+    ll sum = 0, sum2 = 0;
+    for (auto &it : arr)
+      sum2 += sx(it), sum += it;
+    ll va = n, vb = 2 * sum, vc = sum2 - c;
+    //debug(va, vb, vc);
+    ll delta = sx(vb / va) - 4 * vc / va;
+    ll ans = -vb / 2 / va + sqrt(delta) / 2;
+    cout << ans / 2 << "\n";
   }
 
   return 0;
 }
-

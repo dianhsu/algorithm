@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <cctype>
 
 using namespace std;
 #define sx(x) ((x) * (x))
@@ -40,24 +41,17 @@ int main() {
   int t;
   cin >> t;
   while(t--){
-    int n, k, q;
-    cin >> n >> k >> q;
-    vector<int> temp(n);
-    for(auto& it: temp) cin >> it;
-    ll cur = 0;
-    ll ans = 0;
-    for(int i = 0; i < n; ++i){
-      if(temp[i] <= q){
-        ++cur;
-      }else{
-        cur = 0;
-      }
-      if(cur >= k){
-        ll tmp = cur - k + 1;
-        ans += (tmp + 1) * tmp / 2 - tmp * (tmp - 1) / 2;
+    vector<string> vec(8);
+    string ans;
+    for(auto& it: vec) {
+      cin >> it;
+      for(auto& c: it){
+        if(isalpha(c)){
+          ans += c;
+        }
       }
     }
-    cout << ans << endl;
+    cout << ans << "\n";
   }
 
   return 0;
