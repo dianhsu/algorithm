@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <queue>
 
 using namespace std;
 #define sx(x) ((x) * (x))
@@ -35,32 +36,32 @@ int __INIT_IO__ = [](){
   cout << fixed << setprecision(12);
   return 0;
 }();
-
+struct Node{
+  int h, idx;
+  bool operator > (const Node& node) const{
+    if(h != node.h) return h > node.h;
+    return idx < node.idx;
+  }
+};
 int main() {
   int t;
   cin >> t;
   while(t--){
-    int n, k;
+    int n;
+    ll k;
     cin >> n >> k;
-    vector<PII> arr(n);
+    map<int, vector<int>> mp;
     for(int i = 0; i < n; ++i){
-      cin >> arr[i].first;
-      arr[i].second = i;
+      int tv;
+      cin >> tv;
+      mp[(tv - 1) % k].push_back(i);
     }
-    sort(itr(arr));
-    vector<int> brr(n);
-    for(auto& it: brr) cin >> it;
-    sort(itr(brr));
-    vector<int> ans(n);
-    for(int i = 0; i < n; ++i){
-      ans[arr[i].second] = brr[i];
+    for(auto it = mp.rbegin(); it != mp.rend(); ++it){
+      auto& vec = it->second;
+      for(auto& cur: vec) cout << cur + 1 << " ";
     }
-    for(auto& it: ans){
-      cout << it << " ";
-    }
-    cout << endl;
+    cout << "\n";
   }
-
   return 0;
 }
 

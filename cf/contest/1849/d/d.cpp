@@ -37,30 +37,56 @@ int __INIT_IO__ = [](){
 }();
 
 int main() {
-  int t;
-  cin >> t;
-  while(t--){
-    int n, k;
-    cin >> n >> k;
-    vector<PII> arr(n);
-    for(int i = 0; i < n; ++i){
-      cin >> arr[i].first;
-      arr[i].second = i;
+  int n;
+  cin >> n;
+  vector<int> arr;
+  for(int i = 0; i < n; ++i){
+    int tv;
+    cin >> tv;
+    if(tv == 0){
+      arr.push_back(tv);
+    }else if(!arr.empty() and arr.back() != 0){
+      arr.back() = max(arr.back(), tv);
+    }else{
+      arr.push_back(tv);
     }
-    sort(itr(arr));
-    vector<int> brr(n);
-    for(auto& it: brr) cin >> it;
-    sort(itr(brr));
-    vector<int> ans(n);
-    for(int i = 0; i < n; ++i){
-      ans[arr[i].second] = brr[i];
-    }
-    for(auto& it: ans){
-      cout << it << " ";
-    }
-    cout << endl;
   }
-
+  stack<int> st;
+  int ans = 0;
+  for(auto& it: arr){
+    if(st.empty()){
+      st.push(it);
+    }else if(st.top() == 0){
+      if(it == 0){
+        ++ans;
+      }else if(it == 1){
+        st.pop();
+        ++ans;
+      }else{
+        st.push(it);
+      }
+    }else{
+      if(st.top() == 1){
+        st.pop();
+        ++ans;
+      }else{
+        st.pop();
+        ++ans;
+        if(!st.empty()) st.pop();
+      }
+    }
+  }
+  while(!st.empty()){
+    if(st.top() == 1 or st.top() == 2){
+      st.pop();
+      ++ans;
+      if(!st.empty()) st.pop();
+    }else{
+      st.pop();
+      ++ans;
+    }
+  }
+  cout << ans << endl;
   return 0;
 }
 

@@ -40,25 +40,16 @@ int main() {
   int t;
   cin >> t;
   while(t--){
-    int n, k;
-    cin >> n >> k;
-    vector<PII> arr(n);
-    for(int i = 0; i < n; ++i){
-      cin >> arr[i].first;
-      arr[i].second = i;
+    int n;
+    cin >> n;
+    int ans = 0;
+    for(int i = 1; i <= n; ++i){
+      int tv;
+      cin >> tv;
+      if(tv == i) ++ans;
     }
-    sort(itr(arr));
-    vector<int> brr(n);
-    for(auto& it: brr) cin >> it;
-    sort(itr(brr));
-    vector<int> ans(n);
-    for(int i = 0; i < n; ++i){
-      ans[arr[i].second] = brr[i];
-    }
-    for(auto& it: ans){
-      cout << it << " ";
-    }
-    cout << endl;
+    ans = (ans + 1) / 2;
+    cout << ans << endl;
   }
 
   return 0;
