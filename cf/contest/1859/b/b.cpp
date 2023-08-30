@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-#define PF(x) ((x) * (x))
-#define LF(x) (PF(x) * (x))
+#define sx(x) ((x) * (x))
+#define vx(x) (sx(x) * (x))
 #define itr(x) begin(x), end(x)
 #define debug(x...)                                                            \
   do {                                                                         \
@@ -37,7 +37,36 @@ int __INIT_IO__ = [](){
 }();
 
 int main() {
-
+  int t;
+  cin >> t;
+  while(t--){
+    int n;
+    cin >> n;
+    vector<PII> vec(n, {inf, inf});
+    PII mf = {inf, inf};
+    for(int i = 0; i < n; ++i){
+      int s;
+      cin >> s;
+      while(s--){
+        int x;
+        cin >> x;
+        if(x < vec[i].first){
+          vec[i].second = vec[i].first;
+          vec[i].first = x;
+        }else if(x < vec[i].second){
+          vec[i].second = x;
+        }
+      }
+    }
+    ll sum = 0;
+    for(auto& it: vec){
+      mf.first = min(mf.first, it.first);
+      mf.second = min(mf.second, it.second);
+      sum += it.second;
+    }
+    sum = sum - mf.second + mf.first;
+    cout << sum << "\n";
+  }
 
   return 0;
 }

@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
+#include <valarray>
 
 using namespace std;
-#define PF(x) ((x) * (x))
-#define LF(x) (PF(x) * (x))
+#define sx(x) ((x) * (x))
+#define vx(x) (sx(x) * (x))
 #define itr(x) begin(x), end(x)
 #define debug(x...)                                                            \
   do {                                                                         \
@@ -37,7 +38,27 @@ int __INIT_IO__ = [](){
 }();
 
 int main() {
-
+  int t;
+  cin >> t;
+  while(t--){
+    int n;
+    cin >> n;
+    vector<int> arr(n), brr(n);
+    for(auto& it: arr) cin >> it;
+    for(auto& it: brr) cin >> it;
+    for(int i = 0; i < n; ++i){
+      arr[i] = arr[i] - brr[i];
+    }
+    int maxv = *max_element(itr(arr));
+    vector<int> ans;
+    for(int i = 0; i < n; ++i){
+      if(arr[i] == maxv){
+        ans.push_back(i + 1);
+      }
+    }
+    cout << ans.size() << "\n";
+    for(auto& it: ans) cout << it << " "; cout << '\n';
+  }
 
   return 0;
 }

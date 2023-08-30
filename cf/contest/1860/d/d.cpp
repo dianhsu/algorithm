@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-#define PF(x) ((x) * (x))
-#define LF(x) (PF(x) * (x))
+#define sx(x) ((x) * (x))
+#define vx(x) (sx(x) * (x))
 #define itr(x) begin(x), end(x)
 #define debug(x...)                                                            \
   do {                                                                         \
@@ -37,8 +37,11 @@ int __INIT_IO__ = [](){
 }();
 
 int main() {
-
-
+  int t;
+  cin >> t;
+  while(t--){
+    
+  }
   return 0;
 }
 

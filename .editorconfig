@@ -1,6 +1,14 @@
 root = true
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
 
 [*.cpp]
 indent_size = 2
 tab_width = 2
-indent_style = space
+
+[*.h]
+indent_size = 2
+tab_width = 2
+

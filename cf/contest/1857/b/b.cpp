@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
+#include <memory>
 
 using namespace std;
-#define PF(x) ((x) * (x))
-#define LF(x) (PF(x) * (x))
+#define sx(x) ((x) * (x))
+#define vx(x) (sx(x) * (x))
 #define itr(x) begin(x), end(x)
 #define debug(x...)                                                            \
   do {                                                                         \
@@ -37,8 +38,36 @@ int __INIT_IO__ = [](){
 }();
 
 int main() {
-
-
+  int t;
+  cin >> t;
+  while(t--){
+    string s;
+    cin >> s;
+    reverse(s.begin(), s.end());
+    string ans = s;
+    for(int i = 0; i < s.length(); ++i){
+      if(s[i] >= '5'){
+        s[i] = '0';
+        //debug(i);
+        int nex = i + 1;
+        bool add = true;
+        while(nex < s.length() and s[nex] == '9'){
+          s[nex] = '0';
+          nex++;
+        }
+        if(nex < s.length()){
+          s[nex]++;
+        }else{
+          s += '1';
+        }
+        ans = s;
+      }else{
+        s[i] = '0';
+      }
+    }
+    reverse(itr(ans));
+    cout << ans << '\n';
+  }
   return 0;
 }
 

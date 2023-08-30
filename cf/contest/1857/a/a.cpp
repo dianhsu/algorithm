@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
+#include <numeric>
 
 using namespace std;
-#define PF(x) ((x) * (x))
-#define LF(x) (PF(x) * (x))
+#define sx(x) ((x) * (x))
+#define vx(x) (sx(x) * (x))
 #define itr(x) begin(x), end(x)
 #define debug(x...)                                                            \
   do {                                                                         \
@@ -37,8 +38,22 @@ int __INIT_IO__ = [](){
 }();
 
 int main() {
-
-
+  int t;
+  cin >> t;
+  while(t--){
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    for(auto& it: arr){
+      cin >> it;
+    }
+    int sum = accumulate(itr(arr), 0);
+    if(sum % 2 == 0){
+      cout << "YES\n";
+    }else{
+      cout << "NO\n";
+    }
+  }
   return 0;
 }
 

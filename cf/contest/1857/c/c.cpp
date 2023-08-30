@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-#define PF(x) ((x) * (x))
-#define LF(x) (PF(x) * (x))
+#define sx(x) ((x) * (x))
+#define vx(x) (sx(x) * (x))
 #define itr(x) begin(x), end(x)
 #define debug(x...)                                                            \
   do {                                                                         \
@@ -37,8 +37,26 @@ int __INIT_IO__ = [](){
 }();
 
 int main() {
-
-
+  int t;
+  cin >> t;
+  while(t--){
+    int n;
+    cin >> n;
+    vector<int> arr(n * (n - 1) / 2);
+    for(auto& it: arr) cin >> it;
+    sort(itr(arr), greater<>());
+    int cur = 1;
+    vector<int> ans;
+    for(int i = 0; i < arr.size();){
+      ans.push_back(arr[i]);
+      i += cur;
+      ++cur;
+    }
+    reverse(ans.begin(), ans.end());
+    ans.push_back(ans.back());
+    for(auto& it: ans) cout << it << " ";
+    cout << endl;
+  }
   return 0;
 }
 

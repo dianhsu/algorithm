@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-#define PF(x) ((x) * (x))
-#define LF(x) (PF(x) * (x))
+#define sx(x) ((x) * (x))
+#define vx(x) (sx(x) * (x))
 #define itr(x) begin(x), end(x)
 #define debug(x...)                                                            \
   do {                                                                         \
@@ -37,8 +37,48 @@ int __INIT_IO__ = [](){
 }();
 
 int main() {
-
-
+  int t;
+  cin >> t;
+  while(t--){
+    map<ll, ll> mp;
+    int n;
+    cin >> n;
+    for(int i = 0; i < n; i++){
+      ll x;
+      cin >> x;
+      mp[x]++;
+    }
+    int q;
+    cin >> q;
+    vector<ll> ans(q);
+    for(int i = 0; i < q; i++){
+      ll x, y;
+      cin >> x >> y;
+      ll dv = x * x - 4 * y;
+      if(dv < 0){
+        ans[i] = 0;
+      }else if(dv == 0){
+        if(x % 2 == 0){
+          ans[i] = mp[x / 2] * (mp[x / 2] - 1) / 2;
+        }else{
+          ans[i] = 0;
+        }
+      }else{
+        ll p = sqrt(dv);
+        if(p * p == dv){
+          if((x + p) % 2 == 0){
+            ans[i] = mp[(x + p) / 2] * mp[(x - p) / 2];
+          }else{
+            ans[i] = 0;
+          }
+        }else{
+          ans[i] = 0;
+        }
+      }
+      cout << ans[i] << " ";
+    }
+    cout << "\n";
+  }
   return 0;
 }
 

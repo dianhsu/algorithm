@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-#define PF(x) ((x) * (x))
-#define LF(x) (PF(x) * (x))
+#define sx(x) ((x) * (x))
+#define vx(x) (sx(x) * (x))
 #define itr(x) begin(x), end(x)
 #define debug(x...)                                                            \
   do {                                                                         \
@@ -37,8 +37,24 @@ int __INIT_IO__ = [](){
 }();
 
 int main() {
-
-
+  int t;
+  cin >> t;
+  while(t--){
+    int m, k, a1, ak;
+    cin >> m >> k >> a1 >> ak;
+    int tk = min(m / k, ak);
+    if(a1 >= m - tk * k){
+      cout << "0\n";
+    }else{
+      int tc = m - tk * k - a1;
+      int ans = tc / k + tc % k;
+      if(m % k <= a1){
+        int ck = (a1 - m % k) / k;
+        ans = min(ans, max(m / k - ak - ck, 0));
+      }
+      cout << ans << "\n";
+    }
+  }
   return 0;
 }
 
