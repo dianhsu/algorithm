@@ -1,0 +1,15 @@
+3
+4 6
+..LR..
+ULRU..
+DLRDUU
+..LRDD
+5 4
+.LR.
+.UU.
+UDDU
+D..D
+LR..
+2 2
+..
+..
