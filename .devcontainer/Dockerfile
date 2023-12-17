@@ -6,7 +6,7 @@ FROM gcc
 # 更新包数据库
 RUN apt-get update
 # 安装必要的软件包
-RUN apt-get install -y gdb build-essential curl sed unzip git jq
+RUN apt-get install -y gdb build-essential curl sed unzip git jq libssl-dev ca-certificates
 # 安装cf-tool
 RUN mkdir ~/tool && mkdir ~/tool/bin
 RUN curl -L $(curl -s https://api.github.com/repos/dianhsu/ace/releases/latest | jq ".assets[0].browser_download_url" | cut -d '"' -f 2) -o dist.zip && unzip dist.zip && rm dist.zip && mv ace ~/tool/bin/ace && chmod +x ~/tool/bin/ace
