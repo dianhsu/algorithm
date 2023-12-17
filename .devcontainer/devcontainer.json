@@ -8,8 +8,8 @@
 	},
 	"mounts": [
 		{
-			"source": "cf-volume",
-			"target": "/root/.cf/",
+			"source": "ace-volume",
+			"target": "/root/.ace/",
 			"type": "volume"
 		}
 	],
