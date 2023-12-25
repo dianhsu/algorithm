@@ -18,7 +18,7 @@ RUN curl -L $(curl -s https://api.github.com/repos/clangd/clangd/releases/latest
 #     && cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc \
 #     && usermod -s /bin/zsh root
 
-RUN echo "export PATH=$PATH:~/tool/clangd/bin:~/tool/bin" >> ~/.zshrc
+RUN echo "export PATH=$PATH:~/tool/clangd/bin:~/tool/bin" >> ~/.bashrc
 
 RUN apt autoremove -y \
     && apt clean -y \
