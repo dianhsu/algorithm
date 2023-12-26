@@ -8,7 +8,7 @@
 	},
 	"mounts": [
 		{
-			"source": "ace-volume",
+			"source": "algorithm-volume",
 			"target": "/root/.ace/",
 			"type": "volume"
 		}

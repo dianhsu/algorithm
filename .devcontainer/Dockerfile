@@ -9,7 +9,7 @@ RUN apt-get update
 RUN apt-get install -y gdb build-essential curl sed unzip git jq libssl-dev ca-certificates
 # 安装cf-tool
 RUN mkdir ~/tool && mkdir ~/tool/bin
-RUN curl -L $(curl -s https://api.github.com/repos/dianhsu/ace/releases/latest | jq ".assets[0].browser_download_url" | cut -d '"' -f 2) -o dist.zip && unzip dist.zip && rm dist.zip && mv ace ~/tool/bin/ace && chmod +x ~/tool/bin/ace
+RUN curl -L $(curl -s https://api.github.com/repos/dianhsu-official/ace/releases/latest | jq ".assets[0].browser_download_url" | cut -d '"' -f 2) -o dist.zip && unzip dist.zip && rm dist.zip && mv ace ~/tool/bin/ace && chmod +x ~/tool/bin/ace
 RUN curl -L $(curl -s https://api.github.com/repos/clangd/clangd/releases/latest | jq ".assets[0].browser_download_url" | cut -d '"' -f 2) -o dist.zip && unzip dist.zip && rm dist.zip && mv clangd_*/ ~/tool/clangd
 
 # RUN apt-get install -y zsh
