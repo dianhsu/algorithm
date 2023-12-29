@@ -7,10 +7,11 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug",
+            "name": "Build & Run (C++)",
             "program": "${fileDirname}/run.elf",
             "args": [],
-            "cwd": "${fileDirname}"
+            "cwd": "${fileDirname}",
+            "preLaunchTask": "build cpp",
         }
     ]
 }

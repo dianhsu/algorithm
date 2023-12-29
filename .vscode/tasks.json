@@ -4,21 +4,34 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "run",
+            "label": "build cpp",
             "type": "shell",
-            "command": "cf test",
+            "linux": {
+                "command": "g++",
+                "args": [
+                    "-g",
+                    "${file}",
+                    "-o",
+                    "${fileDirname}/run.elf"
+                ],
+            },
             "options": {
                 "cwd": "${fileDirname}"
             },
             "problemMatcher": []
         },
         {
-            "label": "submit",
+            "label": "run cpp (linux)",
             "type": "shell",
-            "command": "cf submit",
+            "linux": {
+                "command": "${workspaceFolder}/scripts/linux/run.sh ./run.elf"
+            },
             "options": {
                 "cwd": "${fileDirname}"
             },
+            "dependsOn": [
+                "build cpp"
+            ],
             "problemMatcher": []
         }
     ]

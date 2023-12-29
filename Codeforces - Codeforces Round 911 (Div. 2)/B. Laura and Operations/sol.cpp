@@ -12,7 +12,7 @@ using namespace std;
 
 void rd_debug() { cout << "\033[39;0m" << endl; }
 
-template <class T, class... Ts> void rd_debug(const T &arg, const Ts &...args) {
+template <class T, class... Ts> void rd_debug(const T& arg, const Ts &...args) {
   cout << arg << " ";
   rd_debug(args...);
 }
@@ -28,7 +28,7 @@ const int MOD9 = 998244353;
 const int inf = 0x3f3f3f3f;
 const ll infl = 0x3f3f3f3f3f3f3f3fll;
 
-int __INIT_IO__ = []() {
+int __INIT_IO__ = [](){
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
   cout.tie(nullptr);
@@ -40,3 +40,4 @@ int main() {
 
   return 0;
 }
+
