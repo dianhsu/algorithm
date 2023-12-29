@@ -12,6 +12,7 @@
             "args": [],
             "cwd": "${fileDirname}",
             "preLaunchTask": "build cpp",
+            "stdio": "${fileDirname}/01.i.txt",
         }
     ]
 }
