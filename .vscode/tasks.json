@@ -21,7 +21,7 @@
             "problemMatcher": []
         },
         {
-            "label": "run cpp (linux)",
+            "label": "run cpp",
             "type": "shell",
             "linux": {
                 "command": "${workspaceFolder}/scripts/linux/run.sh ./run.elf"
