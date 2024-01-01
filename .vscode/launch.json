@@ -7,12 +7,21 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Build & Run (C++)",
+            "name": "Debug from file (C++)",
             "program": "${fileDirname}/run.elf",
             "args": [],
             "cwd": "${fileDirname}",
             "preLaunchTask": "build cpp",
             "stdio": "${fileDirname}/01.i.txt",
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug from stdin (C++)",
+            "program": "${fileDirname}/run.elf",
+            "args": [],
+            "cwd": "${fileDirname}",
+            "preLaunchTask": "build cpp",
         }
     ]
 }
