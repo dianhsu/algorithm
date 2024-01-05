@@ -37,6 +37,34 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
-
+  int t;
+  cin >> t;
+  while (t--) {
+    int n, m;
+    cin >> n >> m;
+    string x, s;
+    cin >> x >> s;
+    int ans = -1;
+    for (int i = 0; i < n; ++i){
+      bool ok = true;
+      for (int j = 0; j < m; ++j) {
+        if (x[(i + j) % n] != s[j]) {
+          ok = false;
+          break;
+        }
+      }
+      if (ok) {
+        int len = (i + m + n - 1) / n;
+        for (int j = 0; j < 20; ++j) {
+          if ((1 << j) >= len) {
+            ans = j;
+            break;
+          }
+        }
+        break;
+      }
+    }
+    cout << ans << endl;
+  }
   return 0; 
 }

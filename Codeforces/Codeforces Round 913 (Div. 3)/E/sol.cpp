@@ -35,8 +35,20 @@ int __INIT_IO__ = []() {
   cout << fixed << setprecision(12);
   return 0;
 }();
-
+int cal(int x){
+  return (x + 2) * (x + 1) / 2;
+}
 int main() {
-
+  int t;
+  cin >> t;
+  while (t--) {
+    string s;
+    cin >> s;
+    ll ans = 1;
+    for (auto& c: s){
+      ans *= cal(c - '0');
+    }
+    cout << ans << endl;
+  }
   return 0; 
 }

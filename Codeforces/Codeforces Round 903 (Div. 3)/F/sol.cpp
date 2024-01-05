@@ -37,6 +37,50 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
-
-  return 0; 
+  int t;
+  cin >> t;
+  while (t--) {
+    int n, k;
+    cin >> n >> k;
+    vector<int> arr(k);
+    for (auto &it : arr)
+      cin >> it;
+    vector<vector<int>> g(n + 1);
+    for (int i = 1; i < n; ++i) {
+      int a, b;
+      cin >> a >> b;
+      g[a].push_back(b);
+      g[b].push_back(a);
+    }
+    if (k == 1) {
+      cout << 0 << endl;
+      continue;
+    }
+    auto &&dfs = [&](auto &&self, int cur, int pre, vector<int> &dis) -> void {
+      for (auto &nex : g[cur]) {
+        if (nex == pre)
+          continue;
+        dis[nex] = dis[cur] + 1;
+        self(self, nex, cur, dis);
+      }
+    };
+    vector<int> dis(n + 1, 0);
+    dfs(dfs, arr[0], -1, dis);
+    int cur = 0;
+    for (int i = 0; i < k; ++i) {
+      if (dis[arr[i]] > dis[arr[cur]]) {
+        cur = i;
+      }
+    }
+    vector<int> dis2(n + 1, 0);
+    dfs(dfs, arr[cur], -1, dis2);
+    int nex = 0;
+    for (int i = 0; i < k; ++i) {
+      if (dis2[arr[i]] > dis2[arr[nex]]) {
+        nex = i;
+      }
+    }
+    cout << (1 + dis2[arr[nex]]) / 2 << endl;
+  }
+  return 0;
 }

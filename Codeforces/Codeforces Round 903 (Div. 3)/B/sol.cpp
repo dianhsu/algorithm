@@ -37,6 +37,17 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
-
+  int t;
+  cin >> t;
+  while (t--) {
+    vector<int> arr(3);
+    for (auto& it: arr) cin >> it;
+    sort(arr.begin(), arr.end());
+    if(arr[1] % arr[0] == 0 && arr[2] % arr[0] == 0) {
+      int ct = arr[1] / arr[0] + arr[2] / arr[0] - 2;
+      cout << (ct <= 3 ? "YES" : "NO") << endl;
+    }
+    else cout << "NO" << endl;
+  }
   return 0; 
 }

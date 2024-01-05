@@ -37,6 +37,32 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
-
-  return 0; 
+  int t;
+  cin >> t;
+  while (t--) {
+    int n;
+    cin >> n;
+    vector<PII> vec(n);
+    for (auto &it : vec) {
+      cin >> it.first >> it.second;
+    }
+    auto &&check = [&](int x) -> bool {
+      int l = 0, r = 0;
+      for (auto &it : vec) {
+        l = max(l - x, it.first);
+        r = min(r + x, it.second);
+        if (l > r or !(it.first <= l and r <= it.second))
+          return false;
+      }
+      return true;
+    };
+    int cur = 1 << 30;
+    for (int i = 1 << 30; i; i >>= 1) {
+      if (cur >= i and check(cur - i)) {
+        cur -= i;
+      }
+    }
+    cout << cur << endl;
+  }
+  return 0;
 }

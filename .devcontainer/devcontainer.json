@@ -14,10 +14,12 @@
                 "GitHub.copilot",
                 "EditorConfig.EditorConfig",
                 "vadimcn.vscode-lldb",
-                "llvm-vs-code-extensions.vscode-clangd",
-                "SanaAjani.taskrunnercode"
+                "llvm-vs-code-extensions.vscode-clangd"
             ]
         }
     },
+    "forwardPorts": [
+        27121
+    ],
     "overrideCommand": false
 }

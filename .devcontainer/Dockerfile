@@ -24,4 +24,4 @@ RUN apt autoremove -y \
     && apt clean -y \
     && rm -rf /var/lib/apt/lists/*
 
-CMD ["/usr/bin/ccs", "-w", "/workspaces/algorithm", "-v", "-t", "/workspaces/algorithm/sol.cpp", "-o", "--log-file", "/workspaces/algorithm/ccs.log"]
+CMD ["/usr/bin/ccs", "-w", "/workspaces/algorithm", "-v", "-t", "/workspaces/algorithm/sol.cpp", "-s", "--log-file", "/workspaces/algorithm/ccs.log"]

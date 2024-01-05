@@ -37,6 +37,24 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
-
-  return 0; 
+  int t;
+  cin >> t;
+  while (t--) {
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    for (auto &it : arr) {
+      cin >> it;
+    }
+    vector<int> cnt(n + 1, 0);
+    for (int i = 0; i < n; ++i){
+      int nexp = i + arr[i] + 1;
+      if (nexp <= n){
+        cnt[nexp] = max(cnt[nexp], cnt[i] + arr[i] + 1);
+      }
+      cnt[i + 1] = max(cnt[i + 1], cnt[i]);
+    }
+    cout << n - cnt[n] << endl;
+  }
+  return 0;
 }

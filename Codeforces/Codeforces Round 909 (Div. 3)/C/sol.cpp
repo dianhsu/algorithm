@@ -37,6 +37,39 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
-
-  return 0; 
+  int t;
+  cin >> t;
+  while (t--) {
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    for (auto &x : arr)
+      cin >> x;
+    int cur = 0;
+    int ans = arr[0];
+    auto &&cal = [&](int l, int r) -> int {
+      int curv = arr[l];
+      int retv = arr[l];
+      for (int i = l + 1; i <= r; ++i) {
+        if (curv + arr[i] < arr[i]) {
+          curv = arr[i];
+        } else {
+          curv += arr[i];
+        }
+        retv = max(retv, curv);
+      }
+      return retv;
+    };
+    for (int i = 0; i < n - 1; ++i) {
+      if ((abs(arr[i]) & 1) == (abs(arr[i + 1]) & 1)) {
+        ans = max(ans, cal(cur, i));
+        cur = i + 1;
+      }
+    }
+    if (cur < n) {
+      ans = max(ans, cal(cur, n - 1));
+    }
+    cout << ans << endl;
+  }
+  return 0;
 }

@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <climits>
 
 using namespace std;
 #define PF(x) ((x) * (x))
@@ -37,6 +38,29 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
-
-  return 0; 
+  int t;
+  cin >> t;
+  while (t--) {
+    int n;
+    cin >> n;
+    vector<ll> arr(n);
+    for (auto &x : arr)
+      cin >> x;
+    vector<ll> sum(n + 1, 0);
+    for (int i = 1; i <= n; i++)
+      sum[i] = sum[i - 1] + arr[i - 1];
+    ll ans = 0;
+    for (int i = 1; i < n; ++i) {
+      if (n % i != 0)
+        continue;
+      PLL tmp = {0, LLONG_MAX};
+      for (int j = i; j <= n; j += i) {
+        tmp.first = max(tmp.first, sum[j] - sum[j - i]);
+        tmp.second = min(tmp.second, sum[j] - sum[j - i]);
+      }
+      ans = max(ans, tmp.first - tmp.second);
+    }
+    cout << ans << endl;
+  }
+  return 0;
 }

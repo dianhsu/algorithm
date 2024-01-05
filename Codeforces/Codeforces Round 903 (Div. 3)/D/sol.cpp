@@ -37,6 +37,30 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
-
+  int t;
+  cin >> t;
+  while(t--){
+    int n;
+    cin >> n;
+    map<int, int> mp;
+    for(int i = 0; i < n; ++i){
+      int tv;
+      cin >> tv;
+      for (int i = 2; i * i <= tv; ++i) {
+        while(tv % i == 0){
+          tv /= i;
+          mp[i]++;
+        }
+      }
+      if (tv > 1) mp[tv]++;
+    }
+    bool ok = true;
+    for (auto& it: mp) {
+      if (it.second % n) {
+        ok = false;
+      }
+    }
+    cout << (ok ? "YES" : "NO") << endl;
+  }
   return 0; 
 }
