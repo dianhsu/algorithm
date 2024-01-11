@@ -35,8 +35,53 @@ int __INIT_IO__ = []() {
   cout << fixed << setprecision(12);
   return 0;
 }();
-
+int solve(vector<int> &arr) {
+  int n = arr.size();
+  int gt = 0, lt = 0;
+  int cgt = 0, clt = 0;
+  for (int i = 0; i < n; ++i) {
+    int cur = i, nex = (i + 1) % n;
+    if (arr[cur] < arr[nex]) {
+      ++lt;
+      clt = nex;
+    } else if (arr[cur] > arr[nex]) {
+      ++gt;
+      cgt = nex;
+    }
+  }
+  // cout << gt << " " << lt << endl;
+  // cout << cgt << " " << clt << endl;
+  if (gt > 1 and lt > 1) {
+    return -1;
+  } else if (gt > 1) {
+    int dv = (n - clt) % n + 1;
+    return dv;
+  } else if (lt > 1) {
+    int dv = (n - cgt) % n;
+    return dv;
+  } else {
+    if (gt == 1 and lt == 1) {
+      int dv = min((n - clt) % n + 1, (n - cgt) % n);
+      return dv;
+    } else {
+      return 0;
+    }
+  }
+}
 int main() {
-
-  return 0; 
+  int t;
+  cin >> t;
+  while (t--) {
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    for (int i = 0; i < n; ++i) {
+      cin >> arr[i];
+    }
+    int d1 = solve(arr);
+    reverse(itr(arr));
+    int d2 = solve(arr) + 1;
+    cout << min(d1, d2) << endl;
+  }
+  return 0;
 }

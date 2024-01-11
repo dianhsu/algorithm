@@ -35,8 +35,28 @@ int __INIT_IO__ = []() {
   cout << fixed << setprecision(12);
   return 0;
 }();
-
+PII cal(int x) {
+  int cnt = __builtin_ctz(x);
+  return {x >> cnt, x - cnt};
+}
 int main() {
-
+  int t;
+  cin >> t;
+  while (t--) {
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    for (auto &x : arr) {
+      cin >> x;
+    }
+    map<PII, int> mp;
+    ll ans = 0;
+    for (int i = 0; i < n; ++i){
+      auto it = cal(arr[i]);
+      ans += mp[it];
+      mp[it]++;
+    }
+    cout << ans << endl;
+  }
   return 0; 
 }

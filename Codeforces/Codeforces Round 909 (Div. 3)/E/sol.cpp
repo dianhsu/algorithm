@@ -37,6 +37,33 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
-
+  int t;
+  cin >> t;
+  while (t--) {
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    for (auto& it: arr){
+      cin >> it;
+    }
+    int p = 0;
+    for (int i = 1; i < n; ++i){
+      if (arr[i] < arr[p]){
+        p = i;
+      }
+    }
+    bool ok = true;
+    for (int i = p + 1; i < n; ++i){
+      if(arr[i] < arr[i - 1]){
+        ok = false;
+        break;
+      }
+    }
+    if (ok){
+      cout << p << endl;
+    }else{
+      cout << -1 << endl;
+    }
+  }
   return 0; 
 }
