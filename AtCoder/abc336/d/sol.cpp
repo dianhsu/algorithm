@@ -1,0 +1,69 @@
+#include <atcoder/all>
+#include <bits/stdc++.h>
+
+using namespace std;
+#define PF(x) ((x) * (x))
+#define LF(x) (PF(x) * (x))
+#define itr(x) begin(x), end(x)
+#define debug(x...)                                                            \
+  do {                                                                         \
+    cout << "\033[32;1m" << #x << " -> ";                                      \
+    rd_debug(x);                                                               \
+  } while (0)
+
+void rd_debug() { cout << "\033[39;0m" << endl; }
+
+template <class T, class... Ts> void rd_debug(const T &arg, const Ts &...args) {
+  cout << arg << " ";
+  rd_debug(args...);
+}
+
+typedef long long ll;
+typedef unsigned long long ull;
+typedef pair<int, int> PII;
+typedef pair<ll, ll> PLL;
+
+const double eps = 1e-7;
+const int MOD1 = 1e9 + 7;
+const int MOD9 = 998244353;
+const int inf = 0x3f3f3f3f;
+const ll infl = 0x3f3f3f3f3f3f3f3fll;
+
+int __INIT_IO__ = []() {
+  ios::sync_with_stdio(false);
+  cin.tie(nullptr);
+  cout.tie(nullptr);
+  cout << fixed << setprecision(12);
+  return 0;
+}();
+int op(int a, int b) { return min(a, b); }
+int e() { return inf; }
+int main() {
+  int n;
+  cin >> n;
+  vector<int> arr(n);
+  for (auto &c : arr)
+    cin >> c;
+  atcoder::segtree<int, op, e> sl(n), sr(n);
+  for (int i = 0; i < n; ++i) {
+    sl.set(i, arr[i] - i), sr.set(i, arr[i] - (n - i - 1));
+  }
+  auto&& checkl = [&](int p, int len) -> bool{
+    return sl.prod(p, p + len) >= 1 - p;
+  };
+  auto&& checkr = [&](int p, int len) -> bool {
+    return sr.prod(p - len, p) >= 1 - (n - p - 1);
+  };
+  int ans = 1;
+  for (int i = 0; i < n; ++i){
+    int cur = 0;
+    for (int lz = 1 << 20; lz > 0; lz >>= 1) {
+      if ((i + (cur + lz) * 2 < n) and checkl(i, cur + lz) and checkr(i + (cur + lz) * 2, cur + lz)) {
+        cur += lz;
+      }
+    }
+    ans = max(ans, cur + 1);
+  }
+  cout << ans << endl;
+  return 0;
+}
