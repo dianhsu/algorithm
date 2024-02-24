@@ -37,5 +37,22 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
+  int t;
+  cin >> t;
+  while (t--) {
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    bool ok = false;
+    for (int i = 1; i < n; ++i){
+      if (s[i] != s[i - 1]) {
+        ok = true;
+        break;
+      }
+    }
+    if (s[0] == '0') ok = true;
+    cout << (ok ? "YES" : "NO") << endl;
+  }
   return 0; 
 }

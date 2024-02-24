@@ -37,5 +37,21 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
+  int t;
+  cin >> t;
+  while (t--){
+    int n;
+    cin >> n;
+    int lx = 0, rx = 0, dy = 0, uy = 0;
+    for (int i = 0; i < n; ++i){
+      int x, y;
+      cin >> x >> y;
+      if(x < 0) lx = 1;
+      else if(x > 0) rx = 1;
+      if(y < 0) dy = 1;
+      else if(y > 0) uy = 1;
+    }
+    cout << (lx + rx + dy + uy < 4 ? "YES" : "NO") << endl;
+  }
   return 0; 
 }

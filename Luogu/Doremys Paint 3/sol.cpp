@@ -37,5 +37,30 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
+  int t;
+  cin >> t;
+  while (t--) {
+    int n;
+    cin >> n;
+    map<int, int> mp;
+    for (int i = 0; i < n; ++i){
+      int tv;
+      cin >> tv;
+      mp[tv]++;
+    }
+    if (mp.size() == 1) {
+      cout << "YES" << endl;
+    }else if(mp.size() > 2) {
+      cout << "NO" << endl;
+    }else {
+      int s1 = mp.begin()->second;
+      int s2 = mp.rbegin()->second;
+      if(abs(s1 - s2) <= 1) {
+        cout << "YES" << endl;  
+      }else {
+        cout << "NO" << endl;
+      }
+    }
+  }
   return 0; 
 }

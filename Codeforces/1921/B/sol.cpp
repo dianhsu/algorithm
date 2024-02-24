@@ -37,5 +37,22 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
+  int t;
+  cin >> t;
+  while (t--) {
+    int n;
+    cin >> n;
+    string a, b;
+    cin >> a >> b;
+    int exa = 0, exb = 0;
+    for (int i = 0; i < n; ++i) {
+      if(a[i] != b[i]) {
+        if (a[i] == '1') ++exa;
+        else ++exb;
+      }
+    }
+    int ans = exa + exb - min(exa, exb);
+    cout << ans << endl;
+  }
   return 0; 
 }

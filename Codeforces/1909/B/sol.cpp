@@ -37,5 +37,18 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
+  int t;
+  cin >> t;
+  while (t--) {
+    int n;
+    cin >> n;
+    vector<ll> arr(n);
+    int ans = inf;
+    for (int i = 0; i < n; ++i) {
+      cin >> arr[i];
+      ans = min(__builtin_ctzll(arr[i]), ans);
+    }
+    cout << (1ll << (ans + 1)) << endl;
+  }
   return 0; 
 }

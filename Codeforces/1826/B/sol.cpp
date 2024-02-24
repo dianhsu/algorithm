@@ -37,5 +37,24 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
+  int t;
+  cin >> t;
+  while (t--) {
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    for (auto& it: arr) cin >> it;
+    int ans = 0;
+    int l = 0, r = n - 1;
+    while (l < r) {
+      int dv = abs(arr[l] - arr[r]);
+      if (dv > 0) {
+        if (ans == 0) ans = dv;
+        else ans = gcd(ans, dv);
+      }
+      ++l, --r;
+    }
+    cout << ans << endl;
+  }
   return 0; 
 }

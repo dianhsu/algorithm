@@ -37,5 +37,17 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
+  int t;
+  cin >> t;
+  while (t--) {
+    int n, k;
+    cin >> n >> k;
+    for (int i = 0; i < n; ++i) {
+      for (int j = 0; j < k; ++j){
+        cout << (char)('a' + j);
+      }
+    }
+    cout << endl;
+  }
   return 0; 
 }

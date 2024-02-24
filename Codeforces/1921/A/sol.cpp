@@ -37,5 +37,19 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
+  int t;
+  cin >> t;
+  while (t--){ 
+    PII x{inf, -inf}, y {inf, -inf};
+    for (int i = 0; i < 4; ++i){
+      int tx, ty;
+      cin >> tx >> ty;
+      x.first = min(x.first, tx);
+      x.second = max(x.second, tx);
+      y.first = min(y.first, ty);
+      y.second = max(y.second, ty);
+    }
+    cout << (x.second - x.first) * (y.second - y.first) << endl;
+  }
   return 0; 
 }

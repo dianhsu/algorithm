@@ -37,5 +37,29 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
+  int t;
+  cin >> t;
+  while (t--) {
+    int n;
+    cin >> n;
+    map<ll, ll> mp;
+    for(int i = 0; i < n; ++i) {
+      int tv;
+      cin >> tv;
+      mp[tv]++;
+    }
+    ll ans = 0;
+    ll cnt = 0;
+    for (auto& [k, v]: mp) {
+      if(v >= 2){
+        ans += v * (v - 1) / 2 * cnt;
+      }
+      if (v >= 3) {
+        ans += v * (v - 1) * (v - 2) / 6;
+      }
+      cnt += v;
+    }
+    cout << ans << endl;
+  }
   return 0; 
 }

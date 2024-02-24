@@ -37,5 +37,29 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
+  int t;
+  cin >> t;
+  while (t--) {
+    ll x;
+    cin >> x;
+    vector<int> arr;
+    while(x) {
+      arr.push_back(x % 2);
+      x /= 2;
+    }
+    int h = 1, l = 0;
+    reverse(itr(arr));
+    vector<int> ans;
+    for (int i = 1; i < arr.size(); ++i) {
+      ans.push_back(h);
+      ++h;
+      if (arr[i] & 1) {
+        ans.push_back(l);
+        --l;
+      }
+    }
+    cout << ans.size() << endl;
+    for (auto& it: ans) cout << it << " "; cout << endl;
+  }
   return 0; 
 }

@@ -37,5 +37,11 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
+  int tc;
+  cin >> tc;
+  while (tc--) {
+    ll n, p, l, t;
+    cin >> n >> p >> l >> t;
+  }
   return 0; 
 }

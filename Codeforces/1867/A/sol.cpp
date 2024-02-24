@@ -37,5 +37,25 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
+  int t;
+  cin >> t;
+  while(t--){
+    int n;
+    cin >> n;
+    vector<PII> vec(n);
+    for(int i = 0; i < n; ++i){
+      cin >> vec[i].first;
+      vec[i].second = i;
+    }
+    vector<int> ans(n);
+    sort(vec.begin(), vec.end(), greater<>());
+    for(int i = 0; i < n; ++i){
+      ans[vec[i].second] = i + 1;
+    }
+    for (int i = 0; i < n; ++i){
+      cout << ans[i] << " ";
+    }
+    cout << endl;
+  }
   return 0; 
 }

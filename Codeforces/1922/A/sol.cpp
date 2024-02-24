@@ -37,5 +37,22 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
+  int t;
+  cin >> t;
+  while (t--) {
+    int n;
+    cin >> n;
+    string a, b, c;
+    cin >> a >> b >> c;
+    bool ok = false;
+    for (int i = 0; i < n; ++i) {
+      if (a[i] == b[i]) {
+        if(c[i] != a[i]) ok = true;
+      }else{
+        if(c[i] != a[i] and c[i] != b[i]) ok = true;
+      }
+    }
+    cout << (ok ? "YES" : "NO") << endl;
+  }
   return 0; 
 }

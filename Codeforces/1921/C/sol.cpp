@@ -37,5 +37,18 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
+  int t;
+  cin >> t;
+  while(t--){
+    ll n, f, a, b;
+    cin >> n >> f >> a >> b;
+    vector<ll> arr(n + 1);
+    ll ans = 0;
+    for (int i = 1; i <= n; ++i) {
+      cin >> arr[i];
+      ans += min(b , a * (arr[i] - arr[i - 1]));
+    }
+    cout << (ans < f ? "YES" : "NO") << endl;
+  }
   return 0; 
 }

@@ -37,5 +37,31 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
+  int t;
+  cin >> t;
+  while (t--) {
+    int n, m;
+    cin >> n >> m;
+    vector<ll> arr(n), brr(m);
+    for (auto &x : arr) cin >> x;
+    for (auto &x : brr) cin >> x;
+    sort(arr.begin(), arr.end(), greater<>());
+    sort(brr.begin(), brr.end());
+    int la = 0, ra = n - 1, lb = 0, rb = m - 1;
+    ll ans = 0;
+    while(la <= ra) {
+      ll cl = abs(brr[lb] - arr[la]), cr = abs(brr[rb] - arr[ra]);
+      if (cl >= cr) {
+        ans += cl;
+        ++lb;
+        ++la;
+      } else {
+        ans += cr;
+        --rb;
+        --ra;
+      }
+    }
+    cout << ans << endl;
+  }
   return 0; 
 }
