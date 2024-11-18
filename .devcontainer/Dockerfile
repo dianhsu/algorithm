@@ -10,7 +10,8 @@ RUN apt-get install -y gdb build-essential curl sed unzip git jq libssl-dev ca-c
 # 安装cf-tool
 RUN mkdir ~/tool && mkdir ~/tool/bin
 RUN VERSION=$(curl -s https://api.github.com/repos/dianhsu-official/ccs/releases/latest | jq ".tag_name" | cut -d '"' -f 2) \
-    && if [ $(uname -m) == "x86_64" ]; then ARCH="amd64"; else ARCH="aarch64"; fi \
+    && if [ $(uname -m) = 'x86_64' ]; then ARCH="amd64"; else ARCH="aarch64"; fi \
+    && echo "VERSION: $VERSION, ARCH: $ARCH" \
     && URL=https://github.com/dianhsu-official/ccs/releases/download/${VERSION}/ccs-linux-${ARCH}.zip \
     && curl -L $URL -o dist.zip \
     && unzip dist.zip \
