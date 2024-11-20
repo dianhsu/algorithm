@@ -23,6 +23,7 @@
         },
         {
             "label": "build cpp",
+            "dependsOn": [],
             "type": "shell",
             "linux": {
                 "command": "g++",
