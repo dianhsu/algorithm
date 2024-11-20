@@ -1,5 +1,6 @@
 # $1: executable file
-for i in `ls *.i.txt`; do
+for i in `ls *.i.txt`
+do
     id=`echo $i | cut -d'.' -f1`
     echo -n "Running test case $id ... "
     $1 < $i > $id.a.txt
