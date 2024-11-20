@@ -37,6 +37,14 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
-
+  string s;
+  cin >> s;
+  for (auto& c: s) if (c == '|') c = ' ';
+  stringstream ss(s);
+  vector<int> ans;
+  while(ss >> s){
+    cout << s.size() << " ";
+  }
+  cout << endl;
   return 0; 
 }
