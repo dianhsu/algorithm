@@ -37,6 +37,30 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
-
+  string s;
+  int q;
+  cin >> s >> q;
+  int l = s.length();
+  auto&& reverse = [](char c) -> char{
+    if (islower(c)) return toupper(c);
+    return tolower(c);
+  };
+  while(q--){
+    ll k;
+    cin >> k;
+    k--;
+    ll grp = k / l;
+    int rev = 0;
+    while(grp) {
+      rev ^= (grp & 1);
+      grp >>= 1;
+    }
+    if (rev){
+      cout << reverse(s[k % l]) << " ";
+    } else {
+      cout << s[k % l] << " ";
+    }
+  }
+  cout << endl;
   return 0; 
 }

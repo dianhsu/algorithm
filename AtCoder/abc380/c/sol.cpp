@@ -37,6 +37,26 @@ int __INIT_IO__ = []() {
 }();
 
 int main() {
-
+  int n, k;
+  cin >> n >> k;
+  string s;
+  cin >> s;
+  vector<pair<char, int>> v;
+  for(auto &c: s) {
+    if(v.empty() || v.back().first != c) {
+      v.push_back({c, 1});
+    } else {
+      v.back().second++;
+    }
+  }
+  if (v.begin()->first == '0') {
+    swap(v[k * 2 - 2], v[k * 2 - 1]);
+  } else{
+    swap(v[k * 2 - 3], v[k * 2 - 2]);
+  }
+  for(auto &p: v) {
+    cout << string(p.second, p.first);
+  }
+  cout << endl;
   return 0; 
 }
