@@ -35,8 +35,52 @@ int __INIT_IO__ = []() {
   cout << fixed << setprecision(12);
   return 0;
 }();
-
+class DSU {
+public:
+  vector<int> fa;
+  vector<int> sz;
+  DSU(int n): fa(n), sz(n, 1) {
+    iota(fa.begin(), fa.end(), 0);
+  }
+  int tf(int x) {
+    if (fa[x] == x) {
+       return x;
+    }
+    return fa[x] = tf(fa[x]);
+  }
+  void mg(int x, int y) {
+    int a = tf(x);
+    int b = tf(y);
+    if (a == b) {
+      return;
+    }
+    if (sz[a] < sz[b]) {
+      swap(a, b);
+    }
+    fa[b] = a;
+    sz[a] += sz[b];
+  }
+};
 int main() {
-
+  int n, m;
+  cin >> n >> m;
+  vector<int> color(n + 1, 0);
+  for(int i = 1; i <= n; ++i) {
+    color[i] = i;
+  }
+  vector<int> color_cnt(n + 1, 1);
+  DSU dsu(n + 1);
+  for (int i = 0; i < m; ++i){
+    int tp;
+    cin >> tp;
+    if (tp == 1){
+      int p, c;
+      cin >> p >> c;
+      int tp = dsu.tf(p);
+      if (color[tp] != c) {
+        color_cnt[color[tp]] -= dsu.sz[tp];
+      }
+    }
+  }
   return 0; 
 }
