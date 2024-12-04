@@ -1,5 +1,5 @@
-#include <bits/stdc++.h>
-
+// #include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 #define PF(x) ((x) * (x))
 #define LF(x) (PF(x) * (x))
@@ -10,7 +10,7 @@ using namespace std;
     rd_debug(x);                                                               \
   } while (0)
 
-void rd_debug() { cout << "\033[39;0m" << endl; }
+void rd_debug() { std::cout << "\033[39;0m" << endl; }
 
 template <class T, class... Ts> void rd_debug(const T &arg, const Ts &...args) {
   cout << arg << " ";
