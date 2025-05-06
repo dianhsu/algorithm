@@ -1,5 +1,5 @@
 # 导入基础镜像GCC
-FROM gcc
+FROM --platform=amd64 gcc
 # 导入基础镜像Clang
 # FROM silkeh/clang
 
