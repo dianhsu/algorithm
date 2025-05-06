@@ -5,6 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${fileDirname}/sol.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "cwd": "${fileDirname}",
+            "args": [
+                "<",
+                "${fileDirname}/01.i.txt"
+            ]
+        },
+        {
             "type": "lldb",
             "request": "launch",
             "name": "Debug from file (C++)",
@@ -22,6 +35,6 @@
             "args": [],
             "cwd": "${fileDirname}",
             "preLaunchTask": "build cpp",
-        }
+        },
     ]
 }

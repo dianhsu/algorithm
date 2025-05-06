@@ -1,8 +1,12 @@
 # $1: executable file
+ls
+pwd
+whoami
 for i in `ls *.i.txt`
 do
     id=`echo $i | cut -d'.' -f1`
     echo -n "Running test case $id ... "
+    chmod a+x $1
     $1 < $i > $id.a.txt
     cnt=`diff -Z $id.o.txt $id.a.txt | wc -l`
     if [ $cnt -gt 0 ]; then

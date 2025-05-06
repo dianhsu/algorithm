@@ -4,17 +4,20 @@
     "name": "Algorithm",
     // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
     "build": {
-        "dockerfile": "Dockerfile"
+        "dockerfile": "Dockerfile.Python"
     },
     "remoteUser": "root",
     "customizations": {
         "vscode": {
             "extensions": [
-                "github.vscode-github-actions",
                 "GitHub.copilot",
                 "EditorConfig.EditorConfig",
-                "vadimcn.vscode-lldb",
-                "llvm-vs-code-extensions.vscode-clangd"
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "ms-python.isort",
+                "ms-python.black-formatter"
+                // "vadimcn.vscode-lldb",
+                // "llvm-vs-code-extensions.vscode-clangd"
             ]
         }
     },
